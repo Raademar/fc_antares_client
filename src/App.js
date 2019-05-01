@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import client from './api'
 import './styles/main.scss'
+import HTML5Backend from 'react-dnd-html5-backend'
+import { DragDropContext } from 'react-dnd'
 
 class App extends Component {
   constructor(props) {
@@ -15,7 +17,7 @@ class App extends Component {
       .fetch(
         `*[_type == 'players']{
         name,
-        position,
+        "position": position->position,
         "image": image.asset->url
       }`
       )
@@ -35,11 +37,20 @@ class App extends Component {
       <div className='container'>
         <h1>Hejsan</h1>
         {this.state.players.map((player, index) => (
-          <img src={player.image} alt='' key={index} />
+          <div key={index}>
+            <h5>{player.name}</h5>
+            <p>{player.position}</p>
+            <img
+              src={player.image}
+              alt='Player of FC Antares'
+              key={index}
+              className='player-card-image'
+            />
+          </div>
         ))}
       </div>
     )
   }
 }
 
-export default App
+export default DragDropContext(HTML5Backend)(App)
