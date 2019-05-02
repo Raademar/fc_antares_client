@@ -3,13 +3,22 @@ import client from './api'
 import './styles/main.scss'
 import HTML5Backend from 'react-dnd-html5-backend'
 import { DragDropContext } from 'react-dnd'
+import PlayerMenu from './components/PlayerMenu'
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      players: []
+      players: [],
+      playerMenuOpen: false
     }
+  }
+
+  handleClick = () => {
+    console.log('clicked')
+    this.setState({
+      playerMenuOpen: !this.state.playerMenuOpen
+    })
   }
 
   componentDidMount() {
@@ -35,19 +44,11 @@ class App extends Component {
   render() {
     return (
       <div className='container'>
-        <h1>Hejsan</h1>
-        {this.state.players.map((player, index) => (
-          <div key={index}>
-            <h5>{player.name}</h5>
-            <p>{player.position}</p>
-            <img
-              src={player.image}
-              alt='Player of FC Antares'
-              key={index}
-              className='player-card-image'
-            />
-          </div>
-        ))}
+        <PlayerMenu
+          players={this.state.players}
+          togglePlayerMenu={this.handleClick}
+          playerMenuOpen={this.state.playerMenuOpen}
+        />
       </div>
     )
   }
