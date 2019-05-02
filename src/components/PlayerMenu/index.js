@@ -1,15 +1,12 @@
 import React from 'react'
 import PlayerMenuButton from './PlayerMenuButton'
-import MenuArrow from '../MenuArrow'
+import PlayerSelectMenu from './PlayerSelectMenu'
 
 const PlayerMenu = props => {
   return (
     <div className='player-menu'>
       {props.playerMenuOpen ? (
-        <div className='player-select-menu'>
-          <MenuArrow rotate='rotate-180' />
-          <p>Menu</p>
-        </div>
+        <PlayerSelectMenu togglePlayerMenu={props.togglePlayerMenu} />
       ) : (
         props.players.map((player, index) => (
           <PlayerMenuButton
