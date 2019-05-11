@@ -1,6 +1,8 @@
 @import './hamburgerbar';
+@import './menuArrow';
 .header {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }

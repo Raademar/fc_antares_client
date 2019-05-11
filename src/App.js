@@ -48,15 +48,17 @@ class App extends Component {
     client
       .fetch(
         `*[_type == 'games']{
-        away_team,
-        home_team,
-        scores,
-        "players_attending": players_attending[]->name,
-        "players_declined": players_declined[]->name,
-        "players_uncertain": players_uncertain[]->name,
-        time,
-        where
-      }`
+          _id,
+          away_team,
+          home_team,
+          scores,
+          played,
+          "players_attending": players_attending[]->name,
+          "players_declined": players_declined[]->name,
+          "players_uncertain": players_uncertain[]->name,
+          time,
+          where
+        }`
       )
       .then(res => {
         // console.log(res)

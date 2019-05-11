@@ -1,14 +1,14 @@
-@import './partials/startPage/startPage';
-@import './partials/header/header';
-@import './partials/games/games';
-@import './partials/playerCard/playerCard';
-@import './partials/playerMenu/playerMenu';
-
 $rich_black: #101456;
 $light_grey: #e6e6f0;
 $laser: #29e9f8;
 $pinky: #dd3875;
 $grass: #5cab72;
+
+@import './partials/startPage/startPage';
+@import './partials/header/header';
+@import './partials/games/games';
+@import './partials/playerCard/playerCard';
+@import './partials/playerMenu/playerMenu';
 
 body {
   font-family: 'Barlow Condensed', sans-serif;
