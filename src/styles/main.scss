@@ -1,10 +1,27 @@
-body {
-  font-family: 'Source Sans Pro', sans-serif;
-}
-
+@import './partials/startPage/startPage';
+@import './partials/header/header';
+@import './partials/games/games';
 @import './partials/playerCard/playerCard';
 @import './partials/playerMenu/playerMenu';
 
+$rich_black: #101456;
+$light_grey: #e6e6f0;
+$laser: #29e9f8;
+$pinky: #dd3875;
+$grass: #5cab72;
+
+body {
+  font-family: 'Barlow Condensed', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: $light_grey;
+}
+
 .rotate-180 {
   transform: rotate(180deg);
+}
+
+.container {
+  background-color: $rich_black;
+  min-height: 100vh;
 }
