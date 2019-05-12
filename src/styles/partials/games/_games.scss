@@ -17,9 +17,88 @@
 .single-game-container {
   position: absolute;
   top: 0;
-  bottom: 0;
   left: 0;
   right: 0;
   z-index: 2;
   background-color: $rich_black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .single-game-info {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    padding: 32px;
+    & > span:not(:last-child) {
+      margin-bottom: 8px;
+    }
+  }
+
+  .single-game-player-status-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-self: flex-start;
+    padding: 0 32px;
+    .single-game-player-status-headings {
+      display: flex;
+      justify-content: flex-start;
+      align-self: flex-start;
+      h2 {
+        font-weight: 400;
+        cursor: pointer;
+        // padding-bottom: 1px;
+        // border-bottom: 1px solid;
+      }
+      h2:not(:last-child) {
+        margin-right: 24px;
+      }
+    }
+    .single-game-players-active-view {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      height: 150px;
+      p {
+        margin-top: 0px;
+        margin-bottom: 8px;
+      }
+    }
+  }
+}
+.single-game-secondary-attendance-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100vw;
+}
+
+.attendance-button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100px;
+  width: 98px;
+  border: none;
+  color: $light_grey;
+  background: linear-gradient(
+    140.89deg,
+    #354a6e -54.54%,
+    rgba(60, 38, 201, 0.51) 123.41%
+  );
+  box-shadow: 1px 2px 4px rgba(6, 7, 30, 0.22);
+  border-radius: 10px;
+  p {
+    margin-top: 0;
+    margin-left: 0px;
+  }
+  .attendance-button-title {
+    font-size: 14px;
+    font-weight: 400;
+  }
+  .attendance-button-subtitle {
+    font-size: 12px;
+    font-weight: 300;
+  }
 }

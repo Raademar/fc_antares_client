@@ -22,7 +22,6 @@ const Game = props => {
     const formattedTime = `${hours}:00`
     return formattedTime
   }
-
   return (
     <div
       className='game'
