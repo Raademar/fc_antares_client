@@ -3,7 +3,7 @@ import React from 'react'
 const MenuArrow = props => {
   return (
     <svg
-      className='rotate-180 menu-arrow'
+      className={props.rotationOfArrow}
       width='11'
       height='14'
       viewBox='0 0 11 14'
@@ -12,7 +12,7 @@ const MenuArrow = props => {
     >
       <path
         d='M1 1L9 7L1 13'
-        stroke='#E6E6F0'
+        stroke={props.strokeColor}
         strokeWidth='2'
         strokeLinecap='round'
       />

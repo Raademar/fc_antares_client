@@ -6,6 +6,7 @@ import Close from '../../Close'
 import CircleBack from '../../CircleBack'
 import Bell from '../../Bell'
 import AttendanceButton from './AttendanceButton'
+import AcceptButton from './AcceptButton'
 
 const SingleGame = props => {
   const {
@@ -83,6 +84,7 @@ const SingleGame = props => {
           <Bell />
         </AttendanceButton>
       </div>
+      <AcceptButton />
     </div>
   )
 }

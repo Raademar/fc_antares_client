@@ -5,7 +5,9 @@ import MenuArrow from '../MenuArrow'
 const Header = () => {
   return (
     <div className='header'>
-      {window.location.pathname != '/' && <MenuArrow />}
+      {window.location.pathname != '/' && (
+        <MenuArrow strokeColor='#E6E6F0' rotationOfArrow='rotate-180' />
+      )}
       <HamburgerBar />
     </div>
   )

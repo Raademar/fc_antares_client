@@ -78,8 +78,9 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  height: 100px;
-  width: 98px;
+  justify-content: space-between;
+  height: 110px;
+  width: 110px;
   border: none;
   color: $light_grey;
   background: linear-gradient(
@@ -89,16 +90,38 @@
   );
   box-shadow: 1px 2px 4px rgba(6, 7, 30, 0.22);
   border-radius: 10px;
+  padding-left: 8px;
+  padding-top: 8px;
+  .attendance-button-text-holder {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
   p {
-    margin-top: 0;
-    margin-left: 0px;
+    margin: 0 0 8px 0;
   }
   .attendance-button-title {
-    font-size: 14px;
-    font-weight: 400;
+    font-size: 13px;
+    font-weight: 600;
   }
   .attendance-button-subtitle {
     font-size: 12px;
     font-weight: 300;
+  }
+}
+
+.single-game-accept-button {
+  background-color: $grass;
+  color: $rich_black;
+  width: 100%;
+  height: 61px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  cursor: pointer;
+  h2 {
+    font-weight: 400;
   }
 }
