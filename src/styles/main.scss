@@ -36,3 +36,8 @@ body {
 .margin-right8 {
   margin-right: 8px;
 }
+
+.active-view {
+  transition: all 0.3s ease-in-out;
+  color: $laser;
+}

@@ -15,7 +15,9 @@ class App extends Component {
     this.state = {
       players: [],
       games: [],
-      playerMenuOpen: false
+      playerMenuOpen: false,
+      singleGameOpen: false,
+      singleGame: {}
     }
   }
 
@@ -23,6 +25,14 @@ class App extends Component {
     console.log('clicked')
     this.setState({
       playerMenuOpen: !this.state.playerMenuOpen
+    })
+  }
+
+  toggleSingleGame = game => {
+    console.log('clicked')
+    this.setState({
+      singleGame: game || null,
+      singleGameOpen: !this.state.singleGameOpen
     })
   }
 
@@ -75,7 +85,7 @@ class App extends Component {
     return (
       <Router>
         <div className='container'>
-          <Header />
+          <Header handleClick={this.toggleSingleGame} />
           <Route
             exact
             path='/'
@@ -84,7 +94,15 @@ class App extends Component {
           <Route
             exact
             path='/games'
-            render={props => <Games {...props} games={this.state.games} />}
+            render={props => (
+              <Games
+                {...props}
+                games={this.state.games}
+                singleGame={this.state.singleGame}
+                singleGameOpen={this.state.singleGameOpen}
+                handleClick={this.toggleSingleGame}
+              />
+            )}
           />
           <Route
             path='/lineup'

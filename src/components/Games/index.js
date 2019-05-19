@@ -5,17 +5,14 @@ import SingleGame from './SingleGame'
 class Games extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      singleGameOpen: false,
-      singleGame: {}
-    }
+    this.state = {}
   }
-  handleClick = game => {
-    this.setState({
-      singleGame: game,
-      singleGameOpen: true
-    })
-  }
+  // handleClick = game => {
+  //   this.setState({
+  //     singleGame: game,
+  //     singleGameOpen: true
+  //   })
+  // }
   render() {
     console.log(this.props.games)
     const { games } = this.props
@@ -29,13 +26,13 @@ class Games extends Component {
               key={index}
               singleGameOpen={this.state.singleGameOpen}
               handleClick={() => {
-                this.handleClick(game)
+                this.props.handleClick(game)
               }}
             />
           ))}
         </div>
-        {this.state.singleGameOpen && (
-          <SingleGame gameInfo={this.state.singleGame} />
+        {this.props.singleGameOpen && (
+          <SingleGame gameInfo={this.props.singleGame} />
         )}
       </div>
     )

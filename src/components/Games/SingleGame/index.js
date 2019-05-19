@@ -22,6 +22,7 @@ const SingleGame = props => {
   } = props.gameInfo
 
   const [activePlayerView, setPlayerView] = useState(players_attending)
+  const [activePlayerViewState, setPlayerViewState] = useState('attending')
 
   const getDateFromShitTime = badTime => {
     const unix = Date.parse(badTime)
@@ -41,8 +42,6 @@ const SingleGame = props => {
     return formattedTime
   }
 
-  console.log(activePlayerView)
-
   return (
     <div className='single-game-container'>
       <h2>
@@ -61,9 +60,39 @@ const SingleGame = props => {
       </div>
       <div className='single-game-player-status-container'>
         <div className='single-game-player-status-headings'>
-          <h2 onClick={() => setPlayerView(players_attending)}>Attending</h2>
-          <h2 onClick={() => setPlayerView(players_declined)}>Declined</h2>
-          <h2 onClick={() => setPlayerView(players_uncertain)}>Uncertain</h2>
+          <h2
+            onClick={() => {
+              setPlayerView(players_attending)
+              setPlayerViewState('attending')
+            }}
+            className={
+              activePlayerViewState === 'attending' ? 'active-view' : ''
+            }
+          >
+            Attending
+          </h2>
+          <h2
+            onClick={() => {
+              setPlayerView(players_declined)
+              setPlayerViewState('declined')
+            }}
+            className={
+              activePlayerViewState === 'declined' ? 'active-view' : ''
+            }
+          >
+            Declined
+          </h2>
+          <h2
+            onClick={() => {
+              setPlayerView(players_uncertain)
+              setPlayerViewState('uncertain')
+            }}
+            className={
+              activePlayerViewState === 'uncertain' ? 'active-view' : ''
+            }
+          >
+            Uncertain
+          </h2>
         </div>
         <div className='single-game-players-active-view'>
           {activePlayerView.map((player, index) => (

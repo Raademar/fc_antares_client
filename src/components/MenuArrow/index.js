@@ -9,6 +9,7 @@ const MenuArrow = props => {
       viewBox='0 0 11 14'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
+      onClick={props.handleClick}
     >
       <path
         d='M1 1L9 7L1 13'
