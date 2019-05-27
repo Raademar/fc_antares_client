@@ -8,6 +8,7 @@ import Header from './components/Header'
 import StartPage from './components/StartPage'
 import Games from './components/Games'
 import PlayerMenu from './components/PlayerMenu'
+import Menu from './components/Menu'
 
 class App extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class App extends Component {
     this.state = {
       players: [],
       games: [],
+      menuOpen: false,
       playerMenuOpen: false,
       singleGameOpen: false,
       singleGame: {}
@@ -22,17 +24,21 @@ class App extends Component {
   }
 
   handleClick = () => {
-    console.log('clicked')
     this.setState({
       playerMenuOpen: !this.state.playerMenuOpen
     })
   }
 
   toggleSingleGame = game => {
-    console.log('clicked')
     this.setState({
       singleGame: game || null,
       singleGameOpen: !this.state.singleGameOpen
+    })
+  }
+
+  toggleMenu = () => {
+    this.setState({
+      menuOpen: !this.state.menuOpen
     })
   }
 
@@ -85,7 +91,10 @@ class App extends Component {
     return (
       <Router>
         <div className='container'>
-          <Header handleClick={this.toggleSingleGame} />
+          <Header
+            handleClick={this.toggleSingleGame}
+            toggleMenu={this.toggleMenu}
+          />
           <Route
             exact
             path='/'
@@ -115,6 +124,12 @@ class App extends Component {
               />
             )}
           />
+          {this.state.menuOpen && (
+            <Menu
+              isMenuOpen={this.state.menuOpen}
+              toggleMenu={this.toggleMenu}
+            />
+          )}
         </div>
       </Router>
     )

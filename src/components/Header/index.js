@@ -12,7 +12,7 @@ const Header = props => {
           handleClick={props.handleClick}
         />
       )}
-      <HamburgerBar />
+      <HamburgerBar toggleMenu={props.toggleMenu} />
     </div>
   )
 }

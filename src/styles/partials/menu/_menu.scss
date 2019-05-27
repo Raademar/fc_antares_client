@@ -1,0 +1,99 @@
+.burger-menu {
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: #3d73cf;
+  height: 100%;
+  width: 100vw;
+  z-index: 9999;
+  color: #fff;
+}
+.menu-enter {
+  /* opacity: 0; */
+  /* transform: scale(0.9); */
+  transform: translateX(100%);
+}
+.menu-enter-active {
+  /* opacity: 1; */
+  transform: translateX(0);
+  transition: all 400ms ease-in-out;
+}
+.menu-exit {
+  /* opacity: 1; */
+  transform: translateX(100%);
+}
+.menu-exit-active {
+  /* opacity: 0; */
+  /* transform: scale(0.9); */
+  transform: translateX(0);
+  transition: all 400ms ease-in-out;
+}
+
+/* ENTER TRANSITION */
+/* Declare transition start properties*/
+.menu-desktop-enter {
+  /* transform: translateY(calc(-100% + 80px)); */
+  height: 0;
+  /* opacity: 0; */
+  /* position: absolute; */
+}
+
+/* Declare transition properties */
+.menu-desktop-enter-active {
+  /* transform: translateY(0); */
+  height: 360px;
+  /* opacity: 1; */
+  transition: all 300ms ease-in;
+}
+
+/* EXIT TRANSITION */
+.menu-desktop-exit {
+  /* transform: translateY(0); */
+  height: 360px;
+  /* opacity: 1; */
+}
+
+.menu-desktop-exit-active {
+  /* transform: translateY(calc(-100% + 80px)); */
+  height: 0;
+  /* opacity: 0; */
+  transition: all 300ms ease-in;
+}
+.menu-desktop-enter-done {
+  height: 360px;
+}
+
+/* ENTER TRANSITION */
+/* Declare transition start properties*/
+.menu-desktop-items-enter {
+  /* transform: translateY(calc(-100% + 80px)); */
+  /* height: 0; */
+  opacity: 0;
+  /* position: absolute; */
+}
+
+/* Declare transition properties */
+.menu-desktop-items-enter-active {
+  /* transform: translateY(0); */
+  /* height: 360px; */
+  opacity: 1;
+  transition: all 300 ease-in;
+}
+
+/* EXIT TRANSITION */
+.menu-desktop-items-exit {
+  /* transform: translateY(0); */
+  /* height: 360px; */
+  opacity: 1;
+}
+
+.menu-desktop-items-exit-active {
+  /* transform: translateY(calc(-100% + 80px)); */
+  /* height: 0; */
+  opacity: 0;
+  transition: all 300 ease-in;
+}
+.menu-desktop-items-enter-done {
+  /* height: 360px; */
+  opacity: 1;
+}
