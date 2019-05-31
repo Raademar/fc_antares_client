@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
+import client from '../../../api'
 import DateOfGame from '../../Date'
 import TimeOfGame from '../../Time'
 import Location from '../../Location'
@@ -10,11 +11,10 @@ import AcceptButton from './AcceptButton'
 
 const SingleGame = props => {
   const {
+    _id,
     home_team,
     away_team,
     time,
-    scores,
-    played,
     where,
     players_attending = [],
     players_uncertain = [],
@@ -42,6 +42,26 @@ const SingleGame = props => {
     return formattedTime
   }
 
+  const handleAccept = () => {
+    client
+      .patch(_id)
+      .insert('after', 'players_attending[-1]', [
+        {
+          _key: 1,
+          _type: 'reference',
+          _ref: '0d740e2f-4b29-4c6d-acf1-5d7eef314e8f'
+        }
+      ])
+      .commit()
+      .then(acceptedAttendance => {
+        console.log('Yey, it worked!')
+        console.log(acceptedAttendance)
+      })
+      .catch(err => {
+        console.error('Ruh Roh', err.message)
+      })
+  }
+  console.log(props.gameInfo)
   return (
     <div className='single-game-container'>
       <h2>
@@ -113,7 +133,7 @@ const SingleGame = props => {
           <Bell />
         </AttendanceButton>
       </div>
-      <AcceptButton />
+      <AcceptButton handleAccept={handleAccept} />
     </div>
   )
 }

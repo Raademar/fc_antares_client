@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { CSSTransition } from 'react-transition-group'
-import { Route, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const Menu = props => {
   const [loaded, didLoad] = useState(false)
 
   useEffect(() => {
     didLoad(true)
-  })
+  }, [])
 
   return (
     <CSSTransition

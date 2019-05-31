@@ -1,7 +1,7 @@
 import React from 'react'
 
 const AttendanceButton = props => {
-  const { title, subtitle, icon } = props
+  const { title, subtitle } = props
   return (
     <button className='attendance-button'>
       {props.children}

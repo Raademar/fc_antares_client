@@ -3,7 +3,7 @@ import Bell from '../../Bell'
 import Edit from '../../Edit'
 
 const Game = props => {
-  const { home_team, away_team, time, scores, played, _id } = props.game
+  const { home_team, away_team, time, scores, played } = props.game
 
   const getDateFromShitTime = badTime => {
     Date.parse(badTime)

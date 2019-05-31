@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import client from './api'
 import './styles/main.scss'
 import HTML5Backend from 'react-dnd-html5-backend'

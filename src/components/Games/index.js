@@ -7,14 +7,7 @@ class Games extends Component {
     super(props)
     this.state = {}
   }
-  // handleClick = game => {
-  //   this.setState({
-  //     singleGame: game,
-  //     singleGameOpen: true
-  //   })
-  // }
   render() {
-    console.log(this.props.games)
     const { games } = this.props
     return (
       <div className='games'>
