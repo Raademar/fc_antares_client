@@ -31,7 +31,7 @@ class App extends Component {
 
   toggleSingleGame = game => {
     this.setState({
-      singleGame: game || null,
+      singleGame: game,
       singleGameOpen: !this.state.singleGameOpen
     })
   }
@@ -92,8 +92,9 @@ class App extends Component {
       <Router>
         <div className='container'>
           <Header
-            handleClick={this.toggleSingleGame}
             toggleMenu={this.toggleMenu}
+            singleGameOpen={this.state.singleGameOpen}
+            handleClick={this.toggleSingleGame}
           />
           <Route
             exact

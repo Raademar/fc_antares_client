@@ -15,8 +15,6 @@ const Menu = props => {
       classNames='menu'
       timeout={400}
       unmountOnExit
-      onEnter={() => didLoad(true)}
-      onExited={() => didLoad(false)}
       key={1}
     >
       <div className='burger-menu'>
