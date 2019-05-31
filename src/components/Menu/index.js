@@ -13,7 +13,7 @@ const Menu = props => {
     <CSSTransition
       in={loaded}
       classNames='menu'
-      timeout={400}
+      timeout={200}
       unmountOnExit
       key={1}
     >
