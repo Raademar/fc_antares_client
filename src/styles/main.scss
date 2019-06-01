@@ -6,6 +6,7 @@ $grass: #5cab72;
 $sunshine: #f2ec5c;
 
 @import './partials/startPage/startPage';
+@import './partials/selectPlayer/select';
 @import './partials/header/header';
 @import './partials/games/games';
 @import './partials/playerCard/playerCard';
@@ -32,6 +33,7 @@ body {
 .container {
   background-color: $rich_black;
   min-height: 100vh;
+  position: relative;
 }
 
 .margin-right8 {

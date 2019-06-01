@@ -9,6 +9,7 @@ import StartPage from './components/StartPage'
 import Games from './components/Games'
 import PlayerMenu from './components/PlayerMenu'
 import Menu from './components/Menu'
+import Select from 'react-select'
 
 class App extends Component {
   constructor(props) {
@@ -19,7 +20,9 @@ class App extends Component {
       menuOpen: false,
       playerMenuOpen: false,
       singleGameOpen: false,
-      singleGame: {}
+      singleGame: {},
+      activePlayer: {},
+      selectActivePlayer: false
     }
   }
 
@@ -43,9 +46,15 @@ class App extends Component {
   }
 
   componentDidMount() {
+    const activePlayerFromLocalStorage = localStorage.getItem('activePlayer')
+    !activePlayerFromLocalStorage &&
+      this.setState({
+        selectActivePlayer: !this.state.selectActivePlayer
+      })
     client
       .fetch(
         `*[_type == 'players']{
+          _id,
         name,
         "position": position->position,
         "image": image.asset->url
@@ -87,7 +96,41 @@ class App extends Component {
       })
   }
 
+  handleChange = activePlayer => {
+    this.setState({
+      activePlayer: activePlayer
+    })
+    console.log(`Player selected ${activePlayer.label}`)
+  }
+
+  handleConfirmOfActivePlayer = () => {
+    this.setState(
+      {
+        selectActivePlayer: !this.state.selectActivePlayer
+      },
+      () => {
+        localStorage.setItem(
+          'activePlayer',
+          JSON.stringify(this.state.activePlayer)
+        )
+      }
+    )
+  }
+  handleCancel = () => {
+    this.setState({
+      selectActivePlayer: !this.state.selectActivePlayer,
+      activePlayer: {}
+    })
+  }
+
   render() {
+    const playerToSelectFrom = this.state.players.map((opt, index) => ({
+      label: opt.name,
+      value: opt._id
+    }))
+
+    const { activePlayer } = this.state
+
     return (
       <Router>
         <div className='container'>
@@ -130,6 +173,32 @@ class App extends Component {
               isMenuOpen={this.state.menuOpen}
               toggleMenu={this.toggleMenu}
             />
+          )}
+          {this.state.selectActivePlayer && (
+            <div className='select-player-module-container'>
+              <h2>Select a player to proceed as.</h2>
+              <Select
+                options={playerToSelectFrom}
+                value={activePlayer}
+                onChange={this.handleChange}
+                className='select-player-container'
+                classNamePrefix='select-player'
+              />
+              <div className='select-player-button-container'>
+                <button
+                  className='select-player-confirm'
+                  onClick={this.handleConfirmOfActivePlayer}
+                >
+                  Confirm
+                </button>
+                <button
+                  className='select-player-cancel'
+                  onClick={this.handleCancel}
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
           )}
         </div>
       </Router>

@@ -49,7 +49,7 @@ const SingleGame = props => {
         {
           _key: 1,
           _type: 'reference',
-          _ref: '0d740e2f-4b29-4c6d-acf1-5d7eef314e8f'
+          _ref: props.playerId
         }
       ])
       .commit()
@@ -61,7 +61,6 @@ const SingleGame = props => {
         console.error('Ruh Roh', err.message)
       })
   }
-  console.log(props.gameInfo)
   return (
     <div className='single-game-container'>
       <h2>

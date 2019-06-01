@@ -1,0 +1,43 @@
+.select-player-module-container {
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.95);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: $rich_black;
+  h2 {
+    align-self: center;
+    color: $light_grey;
+  }
+  .select-player-container {
+    margin: 0 32px;
+  }
+}
+.select-player-button-container {
+  align-self: center;
+  margin: 16px;
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  .select-player-confirm {
+    width: 150px;
+    height: 40px;
+    background-color: $grass;
+    color: $rich_black;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+  .select-player-cancel {
+    width: 150px;
+    height: 40px;
+    background-color: $pinky;
+    color: $light_grey;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+}
