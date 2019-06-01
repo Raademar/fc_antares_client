@@ -8,6 +8,7 @@ import CircleBack from '../../CircleBack'
 import Bell from '../../Bell'
 import AttendanceButton from './AttendanceButton'
 import AcceptButton from './AcceptButton'
+import nanoid from 'nanoid'
 
 const SingleGame = props => {
   const {
@@ -20,6 +21,9 @@ const SingleGame = props => {
     players_uncertain = [],
     players_declined = []
   } = props.gameInfo
+
+  const activePlayer = JSON.parse(localStorage.getItem('activePlayer'))
+  console.log(props.gameInfo)
 
   const [activePlayerView, setPlayerView] = useState(players_attending)
   const [activePlayerViewState, setPlayerViewState] = useState('attending')
@@ -47,9 +51,9 @@ const SingleGame = props => {
       .patch(_id)
       .insert('after', 'players_attending[-1]', [
         {
-          _key: 1,
+          _key: nanoid(),
           _type: 'reference',
-          _ref: props.playerId
+          _ref: activePlayer.value
         }
       ])
       .commit()
