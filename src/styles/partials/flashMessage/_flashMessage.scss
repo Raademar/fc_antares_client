@@ -1,0 +1,24 @@
+.flash-message {
+  width: 300px;
+  height: 45px;
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flash-message-success {
+  background-color: $grass;
+  color: #06240f;
+}
+
+.flash-message-danger {
+  background-color: $pinky;
+  color: #ab1d52;
+}
+
+.close-flash-message {
+  font-size: 32px;
+}

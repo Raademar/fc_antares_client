@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useReducer } from 'react'
 import client from '../../../api'
 import DateOfGame from '../../Date'
 import TimeOfGame from '../../Time'
@@ -8,6 +8,7 @@ import CircleBack from '../../CircleBack'
 import Bell from '../../Bell'
 import AttendanceButton from './AttendanceButton'
 import AcceptButton from './AcceptButton'
+import FlashMessage from '../../FlashMessage'
 import nanoid from 'nanoid'
 
 const SingleGame = props => {
@@ -23,10 +24,18 @@ const SingleGame = props => {
   } = props.gameInfo
 
   const activePlayer = JSON.parse(localStorage.getItem('activePlayer'))
-  console.log(props.gameInfo)
 
   const [activePlayerView, setPlayerView] = useState(players_attending)
   const [activePlayerViewState, setPlayerViewState] = useState('attending')
+  const [displayFlashMessage, setFlashMessageState] = useState(false)
+
+  const initialState = { message: '', classNames: '' }
+  const reducer = (state, action) => {
+    state.message = action.message
+    state.classNames = action.classNames
+    return state
+  }
+  const [state, dispatch] = useReducer(reducer, initialState)
 
   const getDateFromShitTime = badTime => {
     const unix = Date.parse(badTime)
@@ -46,10 +55,10 @@ const SingleGame = props => {
     return formattedTime
   }
 
-  const handleAccept = () => {
+  const handleAttendanceStatus = status => {
     client
       .patch(_id)
-      .insert('after', 'players_attending[-1]', [
+      .insert('after', `players_${status}[-1]`, [
         {
           _key: nanoid(),
           _type: 'reference',
@@ -57,16 +66,32 @@ const SingleGame = props => {
         }
       ])
       .commit()
-      .then(acceptedAttendance => {
+      .then(setAttendanceStatus => {
         console.log('Yey, it worked!')
-        console.log(acceptedAttendance)
+        console.log(setAttendanceStatus)
+        dispatch({
+          message: 'Attendance saved!',
+          classNames: 'flash-message-success'
+        })
+        setFlashMessageState(true)
       })
       .catch(err => {
         console.error('Ruh Roh', err.message)
+        dispatch({
+          message: 'Failed attempt',
+          classNames: 'flash-message-danger'
+        })
       })
   }
   return (
     <div className='single-game-container'>
+      {displayFlashMessage && (
+        <FlashMessage
+          message={state.message}
+          classNames={state.classNames}
+          setFlashMessageState={setFlashMessageState}
+        />
+      )}
       <h2>
         {home_team} - {away_team}
       </h2>
@@ -124,11 +149,21 @@ const SingleGame = props => {
         </div>
       </div>
       <div className='single-game-secondary-attendance-buttons'>
-        <AttendanceButton title='Cannot attend' subtitle='Cheer for us'>
+        <AttendanceButton
+          title='Cannot attend'
+          subtitle='Cheer for us'
+          handleAttendanceStatus={handleAttendanceStatus}
+          status='declined'
+        >
           <Close />
         </AttendanceButton>
 
-        <AttendanceButton title='Not sure' subtitle='Circle back later'>
+        <AttendanceButton
+          title='Not sure'
+          subtitle='Circle back later'
+          handleAttendanceStatus={handleAttendanceStatus}
+          status='uncertain'
+        >
           <CircleBack />
         </AttendanceButton>
 
@@ -136,7 +171,7 @@ const SingleGame = props => {
           <Bell />
         </AttendanceButton>
       </div>
-      <AcceptButton handleAccept={handleAccept} />
+      <AcceptButton handleAccept={handleAttendanceStatus} />
     </div>
   )
 }
